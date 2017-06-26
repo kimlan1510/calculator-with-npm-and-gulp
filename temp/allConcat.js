@@ -1,4 +1,20 @@
 $(document).ready(function(){
+  $("#multiply").submit(function(event){
+    event.preventDefault();
+    var firstNumber = $('#first_number').val();
+    var secondNumber = $('#second_number').val();
+
+    var simpleCalculator = new Calculator("hot pink");
+    var output = simpleCalculator.multiply(firstNumber, secondNumber);
+
+    $('#solution').append('<li>' + output + '</li>');
+
+  });
+});
+
+var Calculator = require("./../js/pingpong.js").makeUpModule;
+
+$(document).ready(function(){
   $("#pingpong-form").submit(function(event){
     event.preventDefault();
     var goal = $("#goal").val();
@@ -10,7 +26,7 @@ $(document).ready(function(){
   });
 });
 
-var Calculator = require("./../js/pingpong.js").calculatorModule;
+
 
 $(document).ready(function(){
   $('#signup').submit(function(event){

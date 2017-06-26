@@ -1,4 +1,4 @@
-var Calculator = require("./../js/pingpong.js").calculatorModule;
+
 
 $(document).ready(function(){
   $('#signup').submit(function(event){

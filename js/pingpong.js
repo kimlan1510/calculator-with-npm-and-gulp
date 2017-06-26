@@ -18,4 +18,9 @@ Calculator.prototype.pingPong = function(goal) {
   return output;
 };
 
-exports.calculatorModule = Calculator;
+Calculator.prototype.multiply = function(firstNumber,secondNumber) {
+  var result = (firstNumber * secondNumber);
+  return result;
+};
+
+exports.makeUpModule = Calculator;

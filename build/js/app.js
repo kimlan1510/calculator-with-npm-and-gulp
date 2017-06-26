@@ -19,9 +19,30 @@ Calculator.prototype.pingPong = function(goal) {
   return output;
 };
 
-exports.calculatorModule = Calculator;
+Calculator.prototype.multiply = function(firstNumber,secondNumber) {
+  var result = (firstNumber * secondNumber);
+  return result;
+};
+
+exports.makeUpModule = Calculator;
 
 },{}],2:[function(require,module,exports){
+$(document).ready(function(){
+  $("#multiply").submit(function(event){
+    event.preventDefault();
+    var firstNumber = $('#first_number').val();
+    var secondNumber = $('#second_number').val();
+
+    var simpleCalculator = new Calculator("hot pink");
+    var output = simpleCalculator.multiply(firstNumber, secondNumber);
+
+    $('#solution').append('<li>' + output + '</li>');
+
+  });
+});
+
+var Calculator = require("./../js/pingpong.js").makeUpModule;
+
 $(document).ready(function(){
   $("#pingpong-form").submit(function(event){
     event.preventDefault();
@@ -34,7 +55,7 @@ $(document).ready(function(){
   });
 });
 
-var Calculator = require("./../js/pingpong.js").calculatorModule;
+
 
 $(document).ready(function(){
   $('#signup').submit(function(event){

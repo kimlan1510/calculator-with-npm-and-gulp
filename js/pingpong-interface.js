@@ -1,3 +1,5 @@
+var Calculator = require("./../js/pingpong.js").makeUpModule;
+
 $(document).ready(function(){
   $("#pingpong-form").submit(function(event){
     event.preventDefault();
