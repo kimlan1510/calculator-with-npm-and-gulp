@@ -1,4 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+exports.apiKey = "faa00e7367b2be89663ae72dfcc9683b";
+
+},{}],2:[function(require,module,exports){
 function Calculator(skinName) {
   this.skin = skinName;
 }
@@ -26,7 +29,7 @@ Calculator.prototype.multiply = function(firstNumber,secondNumber) {
 
 exports.makeUpModule = Calculator;
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 $(document).ready(function(){
   $("#multiply").submit(function(event){
     event.preventDefault();
@@ -70,16 +73,21 @@ $(document).ready(function(){
   $('#time').text(moment());
 });
 
-var apiKey = "faa00e7367b2be89663ae72dfcc9683b";
+var apiKey = require('./../.env').apiKey;
 
 $(document).ready(function() {
   $('#weather-location').click(function() {
     var city = $('#location').val();
     $('#location').val("");
-    $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey, function(response) {
-      $(".showWeather").text("The humidity in " + city + " is " + response.main.humidity + "%. Temperature is " + (parseInt(response.main.temp) - 273) + " degrees C"); 
-    });
+    $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey)
+      .then(function(response) {
+        $(".showWeather").text("The humidity in " + city + " is " + response.main.humidity + "%. Temperature is " + (parseInt(response.main.temp) - 273) + " degrees C");
+      })
+      .fail(function(error){
+        $('.showWeather').text("error.resposeJSON.message");
+      });
+
   });
 });
 
-},{"./../js/pingpong.js":1}]},{},[2]);
+},{"./../.env":1,"./../js/pingpong.js":2}]},{},[3]);
